@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  
   before_action :require_user_logged_in
   before_action :correct_user, only: [:show, :update, :edit, :destroy]
 
@@ -22,8 +22,8 @@ class TasksController < ApplicationController
     
     if @task.save
       flash[:success] = 'タスクが正常に登録されました'
-      redirect_to root_url
-      # redirect_to @task
+      # redirect_to root_url
+      redirect_to @task
     else
       flash.now[:danger] = 'タスクが登録されませんでした'
       render :new
@@ -55,9 +55,6 @@ class TasksController < ApplicationController
   
   private
   
-  def set_task
-    @task = Task.find(params[:id])
-  end
 
   # Strong Parameter
   def tasks_params
